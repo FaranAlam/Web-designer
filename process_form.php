@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = $_POST["message"];
 
     // Set recipient email address
-    $to = "faranalam14203@gmail.com";
+    $to = "your-email@example.com"; // Replace with your email address
 
     // Build email headers
     $headers = "From: $name <$email>" . "\r\n" .
@@ -29,6 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Email sending failed
         echo "Oops! Something went wrong and we couldn't send your message.";
     }
+
+    // Add additional code to send a notification email to yourself
+    $notification_to = "your-notification-email@example.com"; // Replace with your email address
+    $notification_subject = "New Form Submission on Website";
+    $notification_message = "A new form submission has been received.\n\n" .
+                            "Name: $name\n" .
+                            "Email: $email\n" .
+                            "Subject: $subject\n" .
+                            "Message:\n$message";
+
+    mail($notification_to, $notification_subject, $notification_message);
 } else {
     // If the form is not submitted, redirect to the home page or display an error message
     echo "Form submission error.";
